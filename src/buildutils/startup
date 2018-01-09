@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ $1 = test ]; then
+    python server_test.py
+fi
+
+if [ $1 != test ]; then
+    MONGO_SERVICE_HOST=$1
+    MONGO_SERVICE_PORT=$2
+    export MONGO_SERVICE_HOST MONGO_SERVICE_PORT
+    echo Starting service with db at $MONGO_SERVICE_HOST:$MONGO_SERVICE_PORT
+    python server.py
+fi

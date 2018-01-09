@@ -1,4 +1,0 @@
-#!/bin/sh
-cd /usr/src/app
-python server_test.py
-echo "Done Testing"

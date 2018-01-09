@@ -17,7 +17,7 @@ class TestApiMethods(unittest.TestCase):
         """ test the POST method """
         with server.APP.test_request_context('/', method='POST'):
             response = server.APP.dispatch_request()
-            self.assertEqual("fail", response)
+            self.assertEqual("fail", response.get_data())
 
     def test_post_alt(self):
         """ test the POST method alt"""

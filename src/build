@@ -3,4 +3,4 @@
 NAME=pyserv
 TAG=0.1.0
 docker build -t $NAME:$TAG .
-docker run $NAME:$TAG runtests
+docker run $NAME:$TAG test
