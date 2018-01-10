@@ -1,0 +1,3 @@
+!#/bin/sh
+docker pull mongo:3.6.1-jessie
+docker run -P --name some-mongo -d mongo
