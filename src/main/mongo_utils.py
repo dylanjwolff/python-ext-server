@@ -15,8 +15,19 @@ def build_mongo_collection():
         client = MongoClient(discover_mongo_uri())
     except:
         logging.warn("Exception discovering db");
-        mock_collection = lambda: None
-        mock_collection.insert_one = lambda x: None
-        return mock_collection
+        return build_mock_mongo_collection()
     datab = client.test_database
     return datab.test_collection
+
+def build_mock_mongo_collection():
+    """ get mock mongo collection """
+    mock_collection = lambda: None
+    mock_collection.insert_one = lambda x: None
+    return mock_collection
+
+def build_mock_mongo():
+    """ get mock mongo """
+    mongo = lambda: None
+    mongo.db = lambda: None
+    mongo.db.data = build_mock_mongo_collection()
+    return mongo

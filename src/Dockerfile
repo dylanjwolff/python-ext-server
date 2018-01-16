@@ -8,6 +8,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY buildutils/* /usr/bin/
 COPY main/* ./
 
-EXPOSE 80
+EXPOSE 8080
 
 ENTRYPOINT [ "startup" ]

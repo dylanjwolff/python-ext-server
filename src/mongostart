@@ -1,3 +1,14 @@
-!#/bin/sh
+#!/bin/sh
 docker pull mongo:3.6.1-jessie
 docker run -P --name some-mongo -d mongo
+
+MONGO_SERVICE_HOST=0.0.0.0
+export MONGO_SERVICE_HOST
+
+ID=$(docker ps --filter name=mongo --format "{{.ID}}")
+PORT=$(docker inspect --format='{{(index (index .NetworkSettings.Ports "27017/tcp") 0).HostPort}}' $ID)
+
+MONGO_SERVICE_PORT=$PORT
+export MONGO_SERVICE_PORT
+
+echo Starting mongodb at $MONGO_SERVICE_HOST:$MONGO_SERVICE_PORT
