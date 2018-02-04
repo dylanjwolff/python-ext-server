@@ -6,10 +6,14 @@ from flask import jsonify
 from flask import request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from flask_cors import CORS, cross_origin
 
 import mongo_utils
 
 APP = Flask(__name__)
+CORS_APP = CORS(APP)
+APP.config['CORS_HEADERS'] = "Content-Type"
+
 try:
     APP.config['MONGO_URI'] = mongo_utils.discover_mongo_uri()
     MONGO = PyMongo(APP)
